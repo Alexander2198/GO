@@ -70,7 +70,7 @@ func main() {
 	})
 
 	// Ruta para la lógica de la resta
-	http.HandleFunc("/restar", restarHandler)
+	http.HandleFunc("/", restarHandler)
 
 	// Iniciar el servidor en el puerto 8080
 	fmt.Println("Servidor iniciado en el puerto 8080")
