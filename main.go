@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"strconv"
 )
 
@@ -72,7 +73,13 @@ func main() {
 	// Ruta para la lógica de la resta
 	http.HandleFunc("/restar", restarHandler)
 
-	// Iniciar el servidor en el puerto 8080
-	fmt.Println("Servidor iniciado en el puerto 8080")
-	http.ListenAndServe(":8080", nil)
+	// Obtén el puerto desde la variable de entorno
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // Puerto por defecto si no se define el entorno
+	}
+
+	// Iniciar el servidor en el puerto especificado
+	fmt.Println("Servidor iniciado en el puerto " + port)
+	http.ListenAndServe(":"+port, nil)
 }
